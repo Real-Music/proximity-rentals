@@ -1,0 +1,1 @@
+[1/8/2019, 12:45:19 PM] document "Logo.psd": Fonts may render inconsistently and text wrapping is unsupported which can result in clipped text. Convert text to a shape to maintain fidelity.
