@@ -1,6 +1,21 @@
 <template>
   <div>
-    
+    <!-- Navigation Bar -->
+    <nav>
+      <div class="logo">
+          <img src="../assets/Logo-assets/Logo.png"><span>Proximity Rentals</span>
+      </div>
+      <ul>
+        <li>Login</li>
+        <li>Signup</li>
+        <li>EN 
+          <ul>
+            <li></li>
+            <li></li>
+          </ul>
+          </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -16,5 +31,43 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
+  $base-color: #744e64;
+  $white-color: #ffffff;
+  // Navigation Bar
+  nav
+    display: grid;
+    grid-template-columns: 1fr auto minmax(75%,1fr) 1fr;
+    align-items: center;
+    justify-content: center;
+    background: #744e64;
+    text-align: center;
+    min-height: 70px;
+
+    .logo
+      grid-column: 2/3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $white-color;
+      *
+        cursor: pointer;
+      span
+        margin-left: 5px;
+
+    ul
+      list-style-type: none;
+      display: flex;
+      justify-content: flex-end;
+      grid-column: 3/4;
+
+      li
+        padding: 3px 10px;
+        margin-left: 5px;
+        flex-basis: 30px;
+        color: $white-color;
+        cursor: pointer;
+        &:hover
+          color: darken( $white-color, 10% );
 
 </style>
+
