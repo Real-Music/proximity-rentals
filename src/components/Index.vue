@@ -39,6 +39,12 @@
           </div>
         </div>
       </section>
+
+      <!-- Footer -->
+      <footer>
+          <span>{{date}} &copy; PROMITY RENTALS INC</span>
+          <span>Privacy & Terms</span>
+      </footer>
     </main>
   </div>
 </template>
@@ -48,7 +54,8 @@ export default {
   data() {
     return {
       filter: '',
-      categories: null
+      categories: null,
+      date: null
     }
   },
   methods: {
@@ -66,6 +73,9 @@ export default {
         this.categories = 'drop'
       }
     }
+  },
+  mounted() {
+      this.date = new Date().getFullYear()
   }
 }
 </script>
@@ -118,20 +128,26 @@ export default {
         margin-left: 7px;
 
     .drop-down-list.drop
-      height: 70px;
+      height: (35px * 2);
     .drop-down-list
+      // pointer-events: none;
       padding: 0 2px;
       position: absolute;
-      left: 0;
-      top: 50px;
-      width: 120px;
-      height: 0px;
+      right: 0;
       display: block;
+      top: 47px;
+      width: 90px;
+      height: 0px;
       transition: all ease-in-out 0.3s;
       background: $base-color;
       overflow: hidden;
-      li
-      text-align: left;
+
+      li.link
+        text-align: left;
+        cursor: pointer;
+        margin: unset;
+        margin: 4px 0px;
+
   section
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -148,7 +164,7 @@ export default {
         color: $base-color;
       input[type="search"]
         padding: 5px 5px 5px 30px;
-        width: 350px;
+        width: 470px;
         font-size: 19px;
         &:focus
           outline: none;
@@ -172,31 +188,47 @@ export default {
           top: 50%;
           transform: translateY(-50%);
         ul.drop
-          height: 169px;
+          height: (31px * 4);
+
+        ul
           transition: all ease-in-out 0.3s;
           border-left: 1px solid darken($white-color, 40%);
           border-right: 1px solid darken($white-color, 40%);
           border-bottom: 1px solid darken($white-color, 40%);
           border-bottom-right-radius: 10px;
-
-        ul
           list-style-type: none;
           min-width: 150px;
           height: 0px;
           overflow: hidden;
           text-align: left;
-          position: absolute;
+          // position: absolute;
           top: 0;
           transition: all ease-in-out 0.3s;
           li
             background: darken($white-color, 5%); 
-            margin: 7px 0px;     
-            padding: 4px 10px;
+            // margin: 7px 0px;     
+            padding: 6px 10px;
             cursor: pointer;
             border-bottom: 1px solid darken($white-color, 10%);
             &:hover
               background: lighten($base-color,0%);
               color: $white-color;
               transition: all ease-in-out 0.1s;
+  footer
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: whitesmoke;
+    width: 100%;
+    padding: 10px 5px;
+    text-align: center;
+    height: 3%;
+    line-height: 30px;
+    span
+      margin-right: 50px;
+      &:first-child
+        color: grey;
+      &:last-child
+        cursor: pointer;
 </style>
 
