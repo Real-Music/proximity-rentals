@@ -1,16 +1,22 @@
 <template>
   <div id="app">
-    <Index/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import Index from './components/Index.vue'
+import Slider from './components/Slider.vue'
 
 export default {
-  components: {
-    Index
-  }
+   data() {
+      return {
+
+      }
+   },
+   methods: {
+      
+   }
 }
 </script>
 
@@ -21,5 +27,8 @@ export default {
     margin: 0;
     padding: 0;
     font-family: 'Titillium Web', sans-serif;
+    box-sizing: border-box;
   }
+    
+
 </style>

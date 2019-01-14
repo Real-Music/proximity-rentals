@@ -14,7 +14,7 @@
             <li class="link">French</li>
             <li class="link">English</li>
           </ul>
-          </li>
+        </li>
 
       </ul>
     </nav>
@@ -30,11 +30,8 @@
             <input type="search" placeholder="Enter your search term here"> <span><button>Search</button></span>
           </div>
           <div class="categories">
-            <ul :class="{drop: categories == 'drop'}">
-              <li>Sheos</li>
-              <li>Dress</li>
-              <li>Cars</li>
-              <li>Laptops</li>
+            <ul :class="{drop: categories == 'drop'}" :style="setSize" >
+              <li v-for="product in products" :key="product" @click="link(product)">{{ product }}</li>
             </ul>
           </div>
         </div>
@@ -42,20 +39,32 @@
 
       <!-- Footer -->
       <footer>
-          <span>{{date}} &copy; PROMITY RENTALS INC</span>
-          <span>Privacy & Terms</span>
+          <div class="sponsor">
+            <Slider></Slider>
+          </div>
+          <div class="copy-right">
+            <span>{{date}} &copy; PROMITY RENTALS INC</span>
+            <span>Privacy & Terms</span>
+          </div>
       </footer>
     </main>
   </div>
 </template>
 
 <script>
+import Slider from './Slider'
+
 export default {
+  components: {
+    Slider,
+  },
   data() {
     return {
       filter: '',
+      height: 0,
       categories: null,
-      date: null
+      date: null,
+      products: ["Sheos", "Dress", "Cars", "Laptops", "Machines","Vegas"]
     }
   },
   methods: {
@@ -66,11 +75,34 @@ export default {
         this.filter = 'drop'
       }
     },
+    link(product) {
+      this.products.forEach((el) => {
+        if (product == el)
+          console.log(el);
+          // For future use
+      })
+    },
     togForSearch() {
-      if(this.categories == 'drop'){
-        this.categories = ''
-      }else {
-        this.categories = 'drop'
+      // if(this.categories == 'drop'){
+      //   this.categories = ''
+      // }else {
+      //   this.categories = 'drop'
+      // }
+      // console.log(this.products.length)
+      if(this.height == 0) {
+        this.height = 36.5
+      } else if (this.height == 36.5) {
+        this.height = 0
+      }
+    }
+  },
+  computed: {
+        setSize() {
+      return {
+        height: ""+ this.products.length * this.height + "px",
+        position: "absolute",
+        zIndex: "99",
+        width: "100%",
       }
     }
   },
@@ -85,6 +117,7 @@ export default {
   $base-color: #744e64;
   $white-color: #ffffff;
   $black-color: #000000;
+
   // Navigation Bar
   nav
     display: grid;
@@ -188,7 +221,7 @@ export default {
           top: 50%;
           transform: translateY(-50%);
         ul.drop
-          height: (31px * 4);
+          // height: (36.5px * 4);
 
         ul
           transition: all ease-in-out 0.3s;
@@ -218,17 +251,26 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
-    background: whitesmoke;
+    // background: whitesmoke;
     width: 100%;
-    padding: 10px 5px;
+    // padding: 15px 5px;
     text-align: center;
-    height: 3%;
-    line-height: 30px;
+    .copy-right
+      background: whitesmoke;
+      padding: 15px 5px;
+      text-align: center;
     span
       margin-right: 50px;
       &:first-child
         color: grey;
       &:last-child
         cursor: pointer;
+
+  @media screen and (max-width: 1024px)
+    section
+      input[type="search"]
+
+  
+
 </style>
 
