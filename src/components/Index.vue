@@ -173,7 +173,7 @@ export default {
 
   section
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: 30% 40% 30%;
     margin: 0 auto;
     text-align: center;
     margin-top: 100px;
@@ -191,14 +191,15 @@ export default {
         color: $base-color;
       input[type="search"]
         padding: 5px 5px 5px 30px;
-        width: 470px;
+        width: 80%;
         font-size: 19px;
         border: none;
         &:focus
           outline: none;
       button
-        padding: 7.1px 18px;
+        padding: 7.1px 0px;
         font-size: 19px;
+        width: 20%;
         cursor: pointer;
         background: $base-color;
         border: none;
