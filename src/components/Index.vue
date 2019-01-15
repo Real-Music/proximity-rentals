@@ -3,14 +3,15 @@
     <!-- Navigation Bar -->
     <nav>
       <div class="logo">
+        <div class="hanbuger" @click="mobileNav"><i class="fas fa-bars"></i></div>
           <img src="../assets/Logo-assets/Logo.png"><span>Proximity Rentals</span>
       </div>
-      <ul>
+      <ul :class="{ mobile: is}">
         <li>Login</li>
         <li>Signup</li>
 
         <li class="drop-down-parent" @click="tog"><span>EN</span> <i class="fa fa-angle-down"></i>
-          <ul class="drop-down-list" :class="{ drop: filter == 'drop' }">
+          <ul class="drop-down-list" :class="{ drop: filter }">
             <li class="link">French</li>
             <li class="link">English</li>
           </ul>
@@ -30,8 +31,11 @@
             <input type="search" placeholder="Enter your search term here"> <span><button>Search</button></span>
           </div>
           <div class="categories">
-            <ul :class="{drop: categories == 'drop'}" :style="setSize" >
-              <li v-for="product in products" :key="product" @click="link(product)">{{ product }}</li>
+            <ul :class="{drop: categories }" >
+              <li>Recent Lease</li>
+              <li>Sheos</li>
+              <li>Houses</li>
+              <li>Fashion</li>
             </ul>
           </div>
         </div>
@@ -60,49 +64,33 @@ export default {
   },
   data() {
     return {
-      filter: '',
+      filter: false,
       height: 0,
-      categories: null,
-      date: null,
-      products: ["Sheos", "Dress", "Cars", "Laptops", "Machines","Vegas"]
+      is: false,
+      categories: false,
+      date: null
     }
   },
   methods: {
     tog() {
-      if(this.filter == 'drop'){
-        this.filter = ''
+      if(this.filter){
+        this.filter = false
       }else {
-        this.filter = 'drop'
+        this.filter = true
       }
-    },
-    link(product) {
-      this.products.forEach((el) => {
-        if (product == el)
-          console.log(el);
-          // For future use
-      })
     },
     togForSearch() {
-      // if(this.categories == 'drop'){
-      //   this.categories = ''
-      // }else {
-      //   this.categories = 'drop'
-      // }
-      // console.log(this.products.length)
-      if(this.height == 0) {
-        this.height = 36.5
-      } else if (this.height == 36.5) {
-        this.height = 0
+      if(this.categories) {
+        this.categories = false
+      } else {
+        this.categories = true
       }
-    }
-  },
-  computed: {
-        setSize() {
-      return {
-        height: ""+ this.products.length * this.height + "px",
-        position: "absolute",
-        zIndex: "99",
-        width: "100%",
+    },
+    mobileNav() {
+      if(this.is){
+        this.is = false
+      }else {
+        this.is = true
       }
     }
   },
@@ -127,6 +115,9 @@ export default {
     background: $base-color;
     text-align: center;
     min-height: 70px;
+
+    .hanbuger
+      display: none;
 
     .logo
       grid-column: 2/3;
@@ -163,7 +154,6 @@ export default {
     .drop-down-list.drop
       height: (35px * 2);
     .drop-down-list
-      // pointer-events: none;
       padding: 0 2px;
       position: absolute;
       right: 0;
@@ -189,6 +179,10 @@ export default {
     margin-top: 100px;
     .search
       grid-column: 2/3;
+      div
+        border: 1px solid #929292;
+      .categories
+        border: none;
       img
         height: 100px;
       p
@@ -199,6 +193,7 @@ export default {
         padding: 5px 5px 5px 30px;
         width: 470px;
         font-size: 19px;
+        border: none;
         &:focus
           outline: none;
       button
@@ -221,25 +216,26 @@ export default {
           top: 50%;
           transform: translateY(-50%);
         ul.drop
-          // height: (36.5px * 4);
-
-        ul
-          transition: all ease-in-out 0.3s;
+          height: 149px;
+          position: absolute;
+          z-index: 99;
+          width: 100%;
           border-left: 1px solid darken($white-color, 40%);
           border-right: 1px solid darken($white-color, 40%);
           border-bottom: 1px solid darken($white-color, 40%);
           border-bottom-right-radius: 10px;
+
+        ul
+          transition: all ease-in-out 0.3s;
           list-style-type: none;
           min-width: 150px;
           height: 0px;
           overflow: hidden;
           text-align: left;
-          // position: absolute;
           top: 0;
           transition: all ease-in-out 0.3s;
           li
-            background: darken($white-color, 5%); 
-            // margin: 7px 0px;     
+            background: darken($white-color, 5%);   
             padding: 6px 10px;
             cursor: pointer;
             border-bottom: 1px solid darken($white-color, 10%);
@@ -251,9 +247,7 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
-    // background: whitesmoke;
     width: 100%;
-    // padding: 15px 5px;
     text-align: center;
     .copy-right
       background: whitesmoke;
@@ -266,11 +260,86 @@ export default {
       &:last-child
         cursor: pointer;
 
-  @media screen and (max-width: 1024px)
+  // Navigation Bar
+  @media screen and (max-width: 1065px)
     section
-      input[type="search"]
+      grid-template-columns: 20% 60% 20%;
+      .search 
+        img
+          height: 70px;
+        p
+          font-size: 18px;
+          letter-spacing: 3px;
+        input[type="search"]
+          width: 80%;
+          font-size: 16px;
+        button
+          width: 20%;
+          font-size: 16px;
+        div ul.drop
+          height: 137px;
+        div ul li
+          padding: 3px 10px;
+          font-size: 18px;
+  @media screen and (max-width: 715px)
+    nav
+      all: unset;
+      display: block;
+      background: $base-color;
+      .logo
+        display: grid;
+        grid-template-columns: auto 1fr;
+        justify-items: end;
+        padding: 10px;
+        span
+          display: none;
+      .hanbuger
+        display: block;
+        font-size: 30px;
+      ul.mobile
+        height: 94px;
+        overflow: unset;
+      ul
+        all: unset;
+        display: block;
+        height: 0px;
+        width: 100%;
+        overflow: hidden;
+        transition: all 0.1s ease-in-out;
+        position: absolute;
+        background: $base-color;
+        li
+          margin-left: unset;
+        .drop-down-list.drop
+          top: 24px;
+    section
+      grid-template-columns: 15% 70% 15%;
 
-  
+  @media screen and (max-width: 420px)
+    section
+      grid-template-columns: 5% 90% 5%;
+      .search
+        img
+          height: 40px;
+        p
+          font-size: 16px;
+          letter-spacing: 1px;
+        input[type="search"]
+          font-size: 15px;
+        button
+          padding: 7px 0px;
+        div ul.drop
+          height: 121px;
+        div ul li
+          font-size: 15px;
+    footer
+      .copy-right
+        font-size: 12px;
+        span
+          margin-right: 10px;
+          &:first-child
+            color: grey;
+          &:last-child
+            cursor: pointer;
 
 </style>
-
