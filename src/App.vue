@@ -5,9 +5,6 @@
 </template>
 
 <script>
-import Index from './components/Index.vue'
-import Slider from './components/Slider.vue'
-
 export default {
    data() {
       return {
@@ -28,6 +25,10 @@ export default {
     padding: 0;
     font-family: 'Titillium Web', sans-serif;
     box-sizing: border-box;
+  }
+
+  html,body{
+      height: 100%;
   }
     
 

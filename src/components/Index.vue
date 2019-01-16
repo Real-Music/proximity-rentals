@@ -1,46 +1,47 @@
 <template>
   <div>
-    <!-- Navigation Bar -->
-    <nav>
-      <div class="logo">
-        <div class="hanbuger" @click="mobileNav"><i class="fas fa-bars"></i></div>
-          <img src="../assets/Logo-assets/Logo.png"><span>Proximity Rentals</span>
-      </div>
-      <ul :class="{ mobile: is}">
-        <li>Login</li>
-        <li>Signup</li>
+    <div class="page-container">
+      <main>
+      <!-- Navigation Bar -->
+        <nav>
+          <div class="logo">
+            <div class="hanbuger" @click="mobileNav"><i class="fas fa-bars"></i></div>
+              <img src="../assets/Logo-assets/Logo.png"><span>Proximity Rentals</span>
+          </div>
+          <ul :class="{ mobile: is}">
+            <li>Login</li>
+            <li>Signup</li>
 
-        <li class="drop-down-parent" @click="tog"><span>EN</span> <i class="fa fa-angle-down"></i>
-          <ul class="drop-down-list" :class="{ drop: filter }">
-            <li class="link">French</li>
-            <li class="link">English</li>
+            <li class="drop-down-parent" @click="tog"><span>EN</span> <i class="fa fa-angle-down"></i>
+              <ul class="drop-down-list" :class="{ drop: filter }">
+                <li class="link">French</li>
+                <li class="link">English</li>
+              </ul>
+            </li>
+
           </ul>
-        </li>
+        </nav>
 
-      </ul>
-    </nav>
-
-    <!-- Main -->
-    <main>
-      <section>
-        <div class="search">
-          <img src="../assets/Logo-assets/Proxi_02.png" alt="Proximity Rental" title="Proximity Rental">
-          <p>The world largest rental app</p>
-          <div class="search-bar">
-            <span @click="togForSearch"><i class="fa fa-angle-down"></i></span>
-            <input type="search" placeholder="Enter your search term here"> <span><button>Search</button></span>
+        <section>
+          <div class="search">
+            <img src="../assets/Logo-assets/Proxi_02.png" alt="Proximity Rental" title="Proximity Rental">
+            <p>The world largest rental app</p>
+            <div class="search-bar">
+              <span @click="togForSearch"><i class="fa fa-angle-down"></i></span>
+              <input type="search" placeholder="Enter your search term here"> <span><button>Search</button></span>
+            </div>
+            <div class="categories">
+              <ul :class="{drop: categories }" >
+                <li>Recent Lease</li>
+                <li>Sheos</li>
+                <li>Houses</li>
+                <li>Fashion</li>
+              </ul>
+            </div>
           </div>
-          <div class="categories">
-            <ul :class="{drop: categories }" >
-              <li>Recent Lease</li>
-              <li>Sheos</li>
-              <li>Houses</li>
-              <li>Fashion</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
+        </section>
+      </main>
+    </div>
       <!-- Footer -->
       <footer>
           <div class="sponsor">
@@ -51,7 +52,6 @@
             <span>Privacy & Terms</span>
           </div>
       </footer>
-    </main>
   </div>
 </template>
 
@@ -105,6 +105,12 @@ export default {
   $base-color: #744e64;
   $white-color: #ffffff;
   $black-color: #000000;
+
+  .page-container
+    min-height: 100vh;
+    main
+      overflow: auto;
+      padding-bottom: 455px;
 
   // Navigation Bar
   nav
@@ -245,9 +251,10 @@ export default {
               color: $white-color;
               transition: all ease-in-out 0.1s;
   footer
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    position: relative;
+    height: 355px;
+    margin-top: -355px;
+    clear: both;
     width: 100%;
     text-align: center;
     .copy-right
