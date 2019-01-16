@@ -191,18 +191,22 @@ export default {
         border: none;
       img
         height: 100px;
+        transition: all .5s ease-in-out;
       p
         font-size: 20px;
         letter-spacing: 5px; 
         color: $base-color;
+        transition: all .5s ease-in-out;
       input[type="search"]
         padding: 5px 5px 5px 30px;
         width: 80%;
         font-size: 19px;
         border: none;
+        transition: all .5s ease-in-out;
         &:focus
           outline: none;
       button
+        transition: all .5s ease-in-out;
         padding: 7.1px 0px;
         font-size: 19px;
         width: 20%;
@@ -257,6 +261,7 @@ export default {
     clear: both;
     width: 100%;
     text-align: center;
+    transition: all .5s ease-in-out;
     .copy-right
       background: whitesmoke;
       padding: 15px 5px;
@@ -289,6 +294,9 @@ export default {
         div ul li
           padding: 3px 10px;
           font-size: 18px;
+    footer
+      height: 315px;
+      margin-top: -315px;
   @media screen and (max-width: 715px)
     nav
       all: unset;
@@ -322,6 +330,9 @@ export default {
           top: 24px;
     section
       grid-template-columns: 15% 70% 15%;
+    footer
+      height: 277px;
+      margin-top: -277px;
 
   @media screen and (max-width: 420px)
     section
